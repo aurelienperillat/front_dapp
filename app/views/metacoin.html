@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="app/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-4">Consultation:</div>    
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input id="consadresse" class="form-control" placeholder="adresse" type="text">
+                </div>
+            </div>
+             <div class="form-group">
+                <div class="col-md-4">
+                    <button id="getBalance" class="btn btn-primary">Valider</button>
+                </div>
+            </div>
+            </br>
+            </br>
+            <div class="form-group">
+                <div class="col-md-4">Virement:</div>    
+            </div>
+            <div class="form-group">  
+                <div class="col-md-4">
+                    <input id="destadresse" type="text" placeholder="adresse" class="form-control input-md">  
+                </div>
+            </div>
+            <div class="form-group">  
+                <div class="col-md-4">
+                    <input id="sendvalue" type="text" placeholder="montant" class="form-control input-md">  
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <button id="sendCoin" class="btn btn-primary">Valider</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div id="response" class="col-md-4"></div>
+            </div>
+            <div class="form-group">
+                <div id="event" class="col-md-4"></div>
+            </div>
+        </form>       
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="app/bootstrap/js/bootstrap.min.js"></script>
+    <script src="app/build/bundles/MetacoinBundle.js"></script>
+    <script>
+       $(document).ready(function() {
+            $("#getBalance").click(function(){
+               var adresse = $('#consadresse').val();
+               var balance = App.getBalance(adresse);
+               return false; 
+            });
+
+            $("#sendCoin").click(function(){
+                var adresse = $('#destadresse').val();
+                var amount = $('#sendvalue').val();
+                var txObj = App.sendCoin(adresse, amount);
+               return false;
+            }); 
+        });
+    </script>
+  </body>
+</html>
